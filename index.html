@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <h1>Expense Tracker</h1>
+                </div>
+                <p class="header-subtitle">Track your expenses and manage your budget effectively</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Summary Cards -->
+            <div class="summary-section">
+                <div class="summary-card">
+                    <div class="summary-icon income">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                        </svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Total Budget</h3>
+                        <p id="totalBudget">$0.00</p>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon expense">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                        </svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Total Expenses</h3>
+                        <p id="totalExpenses">$0.00</p>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <div class="summary-icon balance">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/>
+                        </svg>
+                    </div>
+                    <div class="summary-content">
+                        <h3>Remaining</h3>
+                        <p id="remainingBalance">$0.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <!-- Budget Section -->
+                <div class="section">
+                    <div class="card">
+                        <h2 class="card-title">Set Budget</h2>
+                        <form id="budgetForm" class="form">
+                            <div class="input-group">
+                                <label for="budgetAmount">Monthly Budget</label>
+                                <input type="number" id="budgetAmount" step="0.01" min="0" placeholder="Enter your budget" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12l5 5l10-10"/>
+                                </svg>
+                                Set Budget
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Categories Section -->
+                <div class="section">
+                    <div class="card">
+                        <h2 class="card-title">Manage Categories</h2>
+                        <form id="categoryForm" class="form">
+                            <div class="input-group">
+                                <label for="categoryName">Category Name</label>
+                                <input type="text" id="categoryName" placeholder="e.g., Food, Transport, Entertainment" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="categoryColor">Category Color</label>
+                                <input type="color" id="categoryColor" value="#3b82f6">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Add Category
+                            </button>
+                        </form>
+                        
+                        <div class="categories-list" id="categoriesList">
+                            <h3>Your Categories</h3>
+                            <div id="categoriesContainer">
+                                <p class="empty-state">No categories yet. Add your first category above.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Expense Section -->
+                <div class="section">
+                    <div class="card">
+                        <h2 class="card-title">Add Expense</h2>
+                        <form id="expenseForm" class="form">
+                            <div class="input-group">
+                                <label for="expenseDescription">Description</label>
+                                <input type="text" id="expenseDescription" placeholder="What did you spend on?" required>
+                            </div>
+                            
+                            <div class="input-grid">
+                                <div class="input-group">
+                                    <label for="expenseAmount">Amount</label>
+                                    <input type="number" id="expenseAmount" step="0.01" min="0.01" placeholder="0.00" required>
+                                </div>
+                                
+                                <div class="input-group">
+                                    <label for="expenseCategory">Category</label>
+                                    <select id="expenseCategory" required>
+                                        <option value="">Select category</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="expenseDate">Date</label>
+                                <input type="date" id="expenseDate" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                                Add Expense
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Expenses List Section -->
+                <div class="section full-width">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Expenses</h2>
+                            <div class="filter-controls">
+                                <select id="filterCategory">
+                                    <option value="">All Categories</option>
+                                </select>
+                                <button id="clearAllBtn" class="btn btn-secondary">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                                    </svg>
+                                    Clear All
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="expenses-list" id="expensesList">
+                            <div class="empty-state">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+                                </svg>
+                                <h3>No expenses yet</h3>
+                                <p>Start tracking by adding your first expense above</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
